@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.DateTimeException;
-import java.util.InputMismatchException;
 
 public class Main {
     private static final int maxZapysiv = 50;
@@ -22,11 +21,10 @@ public class Main {
 
             try {
                 System.out.print("Ваш вибір: ");
-                vybir = skan.nextInt();
-                skan.nextLine(); // Очищення буфера
-            } catch (InputMismatchException e) {
+                String vybirStr = skan.nextLine();
+                vybir = Integer.parseInt(vybirStr);
+            } catch (NumberFormatException e) {
                 System.out.println("\nНевірний вибір (╬▔皿▔)╯! Спробуйте ще раз, але вже число.");
-                skan.nextLine(); // Очищення буфера
                 continue;
             }
 
@@ -82,17 +80,15 @@ public class Main {
             try {
                 System.out.println("Введіть дату для запису (рік, місяць, день):");
                 System.out.print("Рік: ");
-                int rik = skan.nextInt();
+                int rik = Integer.parseInt(skan.nextLine());
                 System.out.print("Місяць: ");
-                int misyats = skan.nextInt();
+                int misyats = Integer.parseInt(skan.nextLine());
                 System.out.print("День: ");
-                int den = skan.nextInt();
-                skan.nextLine();
+                int den = Integer.parseInt(skan.nextLine());
 
                 data = LocalDateTime.of(rik, misyats, den, 0, 0);
-            } catch (InputMismatchException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Помилка введення! Введіть ціле число.");
-                skan.nextLine();
             } catch (DateTimeException e) {
                 System.out.println("Помилка: " + e.getMessage());
             }
@@ -154,17 +150,15 @@ public class Main {
             try {
                 System.out.println("Введіть дату запису для видалення (рік, місяць, день):");
                 System.out.print("Рік: ");
-                int rik = skan.nextInt();
+                int rik = Integer.parseInt(skan.nextLine());
                 System.out.print("Місяць: ");
-                int misyats = skan.nextInt();
+                int misyats = Integer.parseInt(skan.nextLine());
                 System.out.print("День: ");
-                int den = skan.nextInt();
-                skan.nextLine();
+                int den = Integer.parseInt(skan.nextLine());
 
                 data = LocalDateTime.of(rik, misyats, den, 0, 0);
-            } catch (InputMismatchException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Помилка введення! Введіть ціле число.");
-                skan.nextLine();
             } catch (DateTimeException e) {
                 System.out.println("Помилка: " + e.getMessage());
             }
